@@ -9,6 +9,11 @@ El proyecto consiste en diseñar un invernadero inteligente. Un [invernadero](ht
 
 ## Lista se sensores y actuadores
 
+*
+*
+*
+
+
 ## Estructura del repositorio
 ### docs/
 En la carpeta docs/ se colocan todos los archivos de soporte que necesite para la documentación del proyecto: .pdf, imágenes, documentos, etc. También todas las imagenes o resultados que vayan a utilizarse como adjuntos en la WIKI. La estructura interna de la carpeta docs/ puede contener tantos directorios como ustedes lo requieran.
