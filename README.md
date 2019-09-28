@@ -1,5 +1,5 @@
 # Invernadero Inteligente
-Un [invernadero](https://dle.rae.es/?id=M3AhIMC) es un recinto en el que se mantienen condiciones ambientales adecuadas para favorecer el cultivo de plantas.
+Un [invernadero](https://grupomsc.com/blog/invernadero/que-es-y-como-funciona-un-invernadero) es un recinto en el que se mantienen condiciones ambientales adecuadas para favorecer el cultivo de plantas. En un invernadero inteligente se monitorean, a través de sensores, las condiciones ambientales (humedad, luminosidad, temperatura, Aireación) en las que se encuentra la planta, esta información es interpretada por un microcontrolador el cual dará la señal a una serie de actuadores para que se activen de ser necesario. La intención es automatizar el sistema que controlada las distintas variables que intervienen en este sistema, con el fin de aumentar su eficiencia, es decir, conseguir los mejores resultados en el menor tiempo posible!
 
 Este repositorio es una plantilla para ser usada en la materia ECXXXX. Modifique el contenido de esta plantilla para adaptarlo a su proyecto manteniendo la estructura de carpetas que se explica en [Estructura del repositorio](#Estructura-del-repositorio).
 
