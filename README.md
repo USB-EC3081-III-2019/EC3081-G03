@@ -5,9 +5,9 @@ El proyecto consiste en diseñar un invernadero inteligente. Un [invernadero](ht
 * 15-11517 José Villalobos 
 * 15-10596 Karlhianna González
 
-## Sensor de Temperatura
+# Sensor de Temperatura
 
-# Lista se sensores y actuadores
+## Lista se sensores y actuadores
 
 ## Estructura del repositorio
 ### docs/
