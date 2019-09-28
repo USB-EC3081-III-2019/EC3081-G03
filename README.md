@@ -6,8 +6,14 @@ El proyecto consiste en diseñar un invernadero inteligente. Un [invernadero](ht
 * 15-10596 Karlhianna González
 
 # Sensor de Temperatura
+¿Qué es un sensor?
+Un sensor es un dispositivo capaz de captar magnitudes físicas (variaciones de luz, temperatura, sonido, etc.) u otras condiciones de su entorno. Un sensor de temperatura es un dispositivo capaz de transformar los cambios de temperatura en señales eléctricas para ser interpretadas por otro dispositivo eléctrico o electrónico.
 
-## Lista se sensores y actuadores
+¿Qué es un actuador?
+Un actuador es un dispositivo capaz de transformar energía hidráulica, neumática o eléctrica en la activación de un proceso con la finalidad de generar un efecto sobre un sistema automatizado. Este recibe la orden de un regulador o controlador y en función a ella genera la orden para activar un elemento final de control. [–Fuente]( https://es.wikipedia.org/wiki/Actuador)
+
+
+## Lista se sensores y actuadores a utilizar
 
 *
 *
