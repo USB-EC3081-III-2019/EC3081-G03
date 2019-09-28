@@ -1,4 +1,5 @@
 # Invernadero Inteligente
+Un [invernadero](https://dle.rae.es/?id=M3AhIMC) es un recinto en el que se mantienen condiciones ambientales adecuadas para favorecer el cultivo de plantas. 
 Este repositorio es una plantilla para ser usada en la materia ECXXXX. Modifique el contenido de esta plantilla para adaptarlo a su proyecto manteniendo la estructura de carpetas que se explica en [Estructura del repositorio](#Estructura-del-repositorio).
 
 ## Integrantes del equipo
