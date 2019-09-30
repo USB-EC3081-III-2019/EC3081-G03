@@ -15,10 +15,14 @@ Un actuador es un dispositivo capaz de transformar energía hidráulica, neumát
 
 ## Lista se sensores y actuadores a utilizar
 
-* SENSOR DE TEMPERATURA [LM35](https://www.mouser.com/ProductDetail/Texas-Instruments/LM35DZ-NOPB?qs=sGAEpiMZZMvu8NZDyZ4K0WAoLK%252Bhc60t)
-* FOTOCELDA
+ * FOTOCELDA 
 * FAN COOLER
-* SENSOR DE HUMEDAD Y TEMPERATURA [DHT11](https://www.mouser.com/ProductDetail/OSEPP-Electronics/HUMI-01?qs=sGAEpiMZZMu8c2wsui%252BiYp0LxtX01PqNBxZY3NVHphM%3D)
+* SENSOR DE TEMPERATURA [LM35](https://www.mouser.com/ProductDetail/Texas-Instruments/LM35DZ-NOPB?qs=sGAEpiMZZMvu8NZDyZ4K0WAoLK%252Bhc60t)    
+ <img src="https://github.com/USB-EC3081-III-2019/EC3081-G03/blob/master/docs/lm35%20image.jpg" width="300" height="300">
+ 
+* SENSOR DE HUMEDAD Y TEMPERATURA [DHT11](https://github.com/USB-EC3081-III-2019/EC3081-G03/blob/master/docs/DHT11%20Image.jpg) 
+ 
+ <img src="https://github.com/USB-EC3081-III-2019/EC3081-G03/blob/master/docs/DHT11%20Image.jpg" width="300" height="300">
 
 
 ## Estructura del repositorio
