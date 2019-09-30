@@ -15,9 +15,9 @@ Un actuador es un dispositivo capaz de transformar energía hidráulica, neumát
 
 ## Lista se sensores y actuadores a utilizar
 
-*
-*
-*
+* SENSOR DE TEMPERATURA LM35
+* FOTOCELDA
+* FAN COOLER
 
 
 ## Estructura del repositorio
