@@ -26,7 +26,7 @@ int LCD_Contar(char c[]);
 void main()
 {
     int Horizontal, Vertical, aux2, aux3;
-    char aux1[]="Grupo 03: KYJ";
+    char aux1[]="NUMEROS:";
     char aux0[]="->";
     PIC_Configuracion_Inicial();
     LCD_Configuracion_Inicial();
@@ -38,25 +38,26 @@ void main()
         LCD_Cursor(Horizontal, Vertical);
         LCD_EscribirStr(aux1);
        
-     /*while(1)
+    /*while(1)
     {  
-        LCD_Display(aux2,0);
+        //LCD_Display(aux2,0);
     }*/
-    /////////////////////////////////////
+    ///////////////////////////////////// Linea de abajo:
        
-        aux3=LCD_Contar(aux0);
+      /*aux3=LCD_Contar(aux0);
        
         Horizontal = -aux2; // Numero de cuadros del cursor que se desea desplazar hacia la derecha - 63 la primera lina, para la simulacion - 40 la primera linea para el montaje
         Vertical = 2; // 1 Arriba, 2 Abajo
         LCD_Cursor(Horizontal, Vertical);
         LCD_EscribirStr(aux0);
-        while(1){};
+        while(1){};*/
+        
     /*while(1)
     {  
-        LCD_Display(aux3,0);
+        LCD_Display(aux3,0); 
     }*/
        
-    /*while(1){
+    while(1){
         __delay_ms(500);
         PORTAbits.RA0 = 1;
         __delay_ms(500);        
@@ -176,7 +177,7 @@ void LCD_Display(int Tam, int Hor)
 void interrupt Interrupcion(void)
 {
 if(RBIF) //Si hay cambio de estado en PORTB
-{  
+{   
     int a=1,b=1,c=1,i=0,k=1;
     while(k==1)
     {
@@ -191,6 +192,7 @@ if(RBIF) //Si hay cambio de estado en PORTB
             __delay_ms(2);
             LCD_Escribir('*');
             k=0;
+            __delay_ms(100);
        
         }
         if((PORTBbits.RB7 == 0)&&(PORTBbits.RB2 == 0))//Código de atención de la interrupción
@@ -199,13 +201,15 @@ if(RBIF) //Si hay cambio de estado en PORTB
             __delay_ms(2);
             LCD_Escribir('0');
             k=0;
+            __delay_ms(100);
         }
         if((PORTBbits.RB7 == 0)&&(PORTBbits.RB1 == 0))//Código de atención de la interrupción
         {
-            //LCD_Comando(0x01); //Display clear
+            LCD_Comando(0x01); //Display clear
             __delay_ms(2);
-            LCD_Escribir('#');
+            LCD_EscribirStr("NUMEROS:");
             k=0;
+            __delay_ms(100);
         }
         if((PORTBbits.RB6 == 0)&&(PORTBbits.RB3 == 0)) //Código de atención de la interrupción
         {
@@ -213,6 +217,7 @@ if(RBIF) //Si hay cambio de estado en PORTB
             __delay_ms(2);
             LCD_Escribir('7');
             k=0;
+            __delay_ms(100);
        
         }
         if((PORTBbits.RB6 == 0)&&(PORTBbits.RB2 == 0))//Código de atención de la interrupción
@@ -221,6 +226,7 @@ if(RBIF) //Si hay cambio de estado en PORTB
             __delay_ms(2);
             LCD_Escribir('8');
             k=0;
+            __delay_ms(100);
         }
         if((PORTBbits.RB6 == 0)&&(PORTBbits.RB1 == 0))//Código de atención de la interrupción
         {
@@ -228,6 +234,7 @@ if(RBIF) //Si hay cambio de estado en PORTB
             __delay_ms(2);
             LCD_Escribir('9');
             k=0;
+            __delay_ms(100);
         }
         //
         if((PORTBbits.RB5 == 0)&&(PORTBbits.RB3 == 0)) //Código de atención de la interrupción
@@ -236,7 +243,7 @@ if(RBIF) //Si hay cambio de estado en PORTB
             __delay_ms(2);
             LCD_Escribir('4');
             k=0;
-       
+            __delay_ms(100);
         }
         if((PORTBbits.RB5 == 0)&&(PORTBbits.RB2 == 0))//Código de atención de la interrupción
         {
@@ -244,6 +251,7 @@ if(RBIF) //Si hay cambio de estado en PORTB
             __delay_ms(2);
             LCD_Escribir('5');
             k=0;
+            __delay_ms(100);
         }
         if((PORTBbits.RB5 == 0)&&(PORTBbits.RB1 == 0))//Código de atención de la interrupción
         {
@@ -251,6 +259,7 @@ if(RBIF) //Si hay cambio de estado en PORTB
             __delay_ms(2);
             LCD_Escribir('6');
             k=0;
+            __delay_ms(100);
         }
         //
         if((PORTBbits.RB4 == 0)&&(PORTBbits.RB3 == 0)) //Código de atención de la interrupción
@@ -259,7 +268,7 @@ if(RBIF) //Si hay cambio de estado en PORTB
             __delay_ms(2);
             LCD_Escribir('1');
             k=0;
-       
+            __delay_ms(100);
         }
         if((PORTBbits.RB4 == 0)&&(PORTBbits.RB2 == 0))//Código de atención de la interrupción
         {
@@ -267,6 +276,7 @@ if(RBIF) //Si hay cambio de estado en PORTB
             __delay_ms(2);
             LCD_Escribir('2');
             k=0;
+            __delay_ms(100);
         }
         if((PORTBbits.RB4 == 0)&&(PORTBbits.RB1 == 0))//Código de atención de la interrupción
         {
@@ -274,15 +284,16 @@ if(RBIF) //Si hay cambio de estado en PORTB
             __delay_ms(2);
             LCD_Escribir('3');
             k=0;
+            __delay_ms(100);
         }
-       
-       
+        
+        
    
         if(i==0)
         {
             a=0;
             b=1;
-            c=1;
+            c=1; 
         }
         if(i==1)
         {
@@ -295,6 +306,11 @@ if(RBIF) //Si hay cambio de estado en PORTB
             a=1;
             b=1;
             c=0;
+            //i=-1;
+        }
+        if(i==3)
+        {
+            k=0;
             i=-1;
         }
         i++;
