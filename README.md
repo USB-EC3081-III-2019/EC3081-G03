@@ -1,5 +1,5 @@
 # Invernadero Inteligente
-El proyecto consiste en diseñar un invernadero inteligente. Un [invernadero](https://grupomsc.com/blog/invernadero/que-es-y-como-funciona-un-invernadero) es un recinto en el que se mantienen condiciones ambientales adecuadas para favorecer el cultivo de plantas. En un invernadero inteligente se monitorean, a través de sensores, las condiciones ambientales (humedad, luminosidad, temperatura, aireación) en las que se encuentra la planta, esta información es interpretada por un microcontrolador el cual dará la señal a una serie de actuadores para que se activen de ser necesario. La intención es automatizar el sistema que controlada las distintas variables que intervienen en este sistema, con el fin de aumentar su eficiencia, es decir, conseguir los mejores resultados en el menor tiempo posible.
+ El proyecto consiste en diseñar un invernadero inteligente. Un [invernadero](https://grupomsc.com/blog/invernadero/que-es-y-como-funciona-un-invernadero) es un recinto en el que se mantienen condiciones ambientales adecuadas para favorecer el cultivo de plantas. En un invernadero inteligente se monitorean, a través de sensores, las condiciones ambientales (humedad, luminosidad, temperatura, aireación) en las que se encuentra la planta, esta información es interpretada por un microcontrolador el cual dará la señal a una serie de actuadores para que se activen de ser necesario. La intención es automatizar el sistema que controlada las distintas variables que intervienen en este sistema, con el fin de aumentar su eficiencia, es decir, conseguir los mejores resultados en el menor tiempo posible.
 
 ## Integrantes del equipo
 * 15-11517 José Villalobos 
@@ -17,14 +17,13 @@ Un actuador es un dispositivo capaz de transformar energía hidráulica, neumát
 
  * FOTOCELDA [LDR](https://protosupplies.com/product/ldr-light-dependent-resistor-12mm/) 
  
-  Fotoresistor es una resistencia la cual varía su valor en función de la cantidad de luz que incide sobre su superficie. Cuanto mayor sea la intensidad de luz que incide en la superficie del LDR o fotoresistor menor será su resistencia y en cuanto menor sea la luz que incida sobre éste mayor será su resistencia.
+  >Fotoresistor es una resistencia la cual varía su valor en función de la cantidad de luz que incide sobre su superficie. Cuanto mayor sea la intensidad de luz que incide en la superficie del LDR o fotoresistor menor será su resistencia y en cuanto menor sea la luz que incida sobre éste mayor será su resistencia.
  
  <img src="https://raw.githubusercontent.com/USB-EC3081-III-2019/EC3081-G03/master/docs/ldr.png">
 * FAN COOLER
 * SENSOR DE TEMPERATURA [LM35](https://www.mouser.com/ProductDetail/Texas-Instruments/LM35DZ-NOPB?qs=sGAEpiMZZMvu8NZDyZ4K0WAoLK%252Bhc60t) 
  
- 
- El LM35 es un sensor de temperatura de buenas prestaciones a un bajo precio. Posee un rango de trabajo desde -55ºC hasta 150ªC. Su salida es de tipo analógica y lineal con una pendiente de 10mV/ºC. El sensor es calibrado de fábrica a una precisión de 0.5ºC.
+ > El LM35 es un sensor de temperatura de buenas prestaciones a un bajo precio. Posee un rango de trabajo desde -55ºC hasta 150ªC. Su salida es de tipo analógica y lineal con una pendiente de 10mV/ºC. El sensor es calibrado de fábrica a una precisión de 0.5ºC.
  <img src="https://github.com/USB-EC3081-III-2019/EC3081-G03/blob/master/docs/lm35%20image.jpg" width="300" height="300">
  
 * SENSOR DE HUMEDAD Y TEMPERATURA [DHT11](https://github.com/USB-EC3081-III-2019/EC3081-G03/blob/master/docs/DHT11%20Image.jpg) 
