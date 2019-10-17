@@ -5,15 +5,11 @@
 * 15-11517 José Villalobos 
 * 15-10596 Karlhianna González
 
-# Sensor de Temperatura
+# Sensores
 ¿Qué es un sensor?
 Un sensor es un dispositivo capaz de captar magnitudes físicas (variaciones de luz, temperatura, sonido, etc.) u otras condiciones de su entorno. Un sensor de temperatura es un dispositivo capaz de transformar los cambios de temperatura en señales eléctricas para ser interpretadas por otro dispositivo eléctrico o electrónico.
 
-¿Qué es un actuador?
-Un actuador es un dispositivo capaz de transformar energía hidráulica, neumática o eléctrica en la activación de un proceso con la finalidad de generar un efecto sobre un sistema automatizado. Este recibe la orden de un regulador o controlador y en función a ella genera la señal para activar un elemento final de control. [–Fuente]( https://es.wikipedia.org/wiki/Actuador)
-
-
-## Lista se sensores y actuadores a utilizar
+## Sensores a utilizar
 
  * FOTOCELDA [LDR](https://protosupplies.com/product/ldr-light-dependent-resistor-12mm/) 
  
@@ -22,7 +18,7 @@ Un actuador es un dispositivo capaz de transformar energía hidráulica, neumát
  
 * FAN COOLER
 
-* SENSOR DE TEMPERATURA
+* SENSOR DE TEMPERATURA [LM35](https://www.mouser.com/ProductDetail/Texas-Instruments/LM35DZ-NOPB?qs=sGAEpiMZZMvu8NZDyZ4K0WAoLK%252Bhc60t)
  
  > El LM35 es un sensor de temperatura de buenas prestaciones a un bajo precio. Posee un rango de trabajo desde -55ºC hasta 150ªC. Su salida es de tipo analógica y lineal con una pendiente de 10mV/ºC. El sensor es calibrado de fábrica a una precisión de 0.5ºC.
  <img src="https://github.com/USB-EC3081-III-2019/EC3081-G03/blob/master/docs/lm35%20image.jpg" width="300" height="300">
@@ -30,6 +26,11 @@ Un actuador es un dispositivo capaz de transformar energía hidráulica, neumát
 * SENSOR DE HUMEDAD Y TEMPERATURA [DHT11](https://github.com/USB-EC3081-III-2019/EC3081-G03/blob/master/docs/DHT11%20Image.jpg) 
  
  <img src="https://github.com/USB-EC3081-III-2019/EC3081-G03/blob/master/docs/DHT11%20Image.jpg" width="300" height="300">
+ 
+ # Actuadores
+ ¿Qué es un actuador?
+Un actuador es un dispositivo capaz de transformar energía hidráulica, neumática o eléctrica en la activación de un proceso con la finalidad de generar un efecto sobre un sistema automatizado. Este recibe la orden de un regulador o controlador y en función a ella genera la señal para activar un elemento final de control. [–Fuente]( https://es.wikipedia.org/wiki/Actuador)
+
 
 
 ## Estructura del repositorio
