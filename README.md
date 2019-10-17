@@ -15,7 +15,7 @@ Un actuador es un dispositivo capaz de transformar energía hidráulica, neumát
 
 ## Lista se sensores y actuadores a utilizar
 
- * FOTOCELDA [DHT11](https://raw.githubusercontent.com/USB-EC3081-III-2019/EC3081-G03/master/docs/ldr.png) 
+ * FOTOCELDA [LDR](https://protosupplies.com/product/ldr-light-dependent-resistor-12mm/) 
  
  <img src="https://raw.githubusercontent.com/USB-EC3081-III-2019/EC3081-G03/master/docs/ldr.png">
 * FAN COOLER
