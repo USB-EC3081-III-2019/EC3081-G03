@@ -13,14 +13,15 @@ Un sensor es un dispositivo capaz de captar magnitudes físicas (variaciones de 
 
  * FOTOCELDA [LDR](https://protosupplies.com/product/ldr-light-dependent-resistor-12mm/) 
  
-  >Fotoresistor es una resistencia la cual varía su valor en función de la cantidad de luz que incide sobre su superficie. Cuanto mayor sea la intensidad de luz que incide en la superficie del LDR o fotoresistor menor será su resistencia y en cuanto menor sea la luz que incida sobre éste mayor será su resistencia.
+  > Las fotoresistencias, también conocidas como resistencias dependientes de la luz (LDR), son dispositivos sensibles a la luz que se utilizan con mayor frecuencia para indicar la presencia o ausencia de luz, o para medir la intensidad de la luz. En la oscuridad, su resistencia es muy alta, a veces hasta 1MΩ, pero cuando el sensor LDR está expuesto a la luz, la resistencia disminuye drásticamente, incluso hasta unos pocos ohmios, dependiendo de la intensidad de la luz. Los LDRs tienen una sensibilidad que varía con la longitud de onda de la luz aplicada y son dispositivos no lineales. Se utilizan en muchas aplicaciones, pero a veces son obsoletos por otros dispositivos como fotodiodos y fototransistores. [Fuente](http://www.resistorguide.com/photoresistor/)
  <img src="https://raw.githubusercontent.com/USB-EC3081-III-2019/EC3081-G03/master/docs/ldr.png">
  
 * FAN COOLER
 
 * SENSOR DE TEMPERATURA [LM35](https://www.mouser.com/ProductDetail/Texas-Instruments/LM35DZ-NOPB?qs=sGAEpiMZZMvu8NZDyZ4K0WAoLK%252Bhc60t)
  
- > El LM35 es un sensor de temperatura de buenas prestaciones a un bajo precio. Posee un rango de trabajo desde -55ºC hasta 150ªC. Su salida es de tipo analógica y lineal con una pendiente de 10mV/ºC. El sensor es calibrado de fábrica a una precisión de 0.5ºC.
+ > El LM35 es un circuito electrónico sensor que puede medir temperatura. Su salida es analógica, es decir, te proporciona un voltaje proporcional a la temperatura. El sensor tiene un rango desde −55°C a 150°C. Su popularidad se debe a la facilidad con la que se puede medir la temperatura. Incluso no es necesario de un microprocesador o microcontrolador para medir la temperatura. Dado que el sensor LM35 es analógico, basta con medir con un multímetro, el voltaje a salida del sensor.
+ Para convertir el voltaje a la temperatura, el LM35 proporciona 10mV por cada grado centígrado. También cabe señalar que ese sensor se puede usar sin offset, es decir que si medimos 20mV a la salida, estaremos midiendo 2°C. [Fuente](https://hetpro-store.com/TUTORIALES/lm35/)
  <img src="https://github.com/USB-EC3081-III-2019/EC3081-G03/blob/master/docs/lm35%20image.jpg" width="300" height="300">
  
 * SENSOR DE HUMEDAD Y TEMPERATURA [DHT11](https://github.com/USB-EC3081-III-2019/EC3081-G03/blob/master/docs/DHT11%20Image.jpg) 
