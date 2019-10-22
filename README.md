@@ -16,7 +16,6 @@ Un sensor es un dispositivo capaz de captar magnitudes físicas (variaciones de 
   > Las fotoresistencias, también conocidas como resistencias dependientes de la luz (LDR), son dispositivos sensibles a la luz que se utilizan con mayor frecuencia para indicar la presencia o ausencia de luz, o para medir la intensidad de la luz. En la oscuridad, su resistencia es muy alta, a veces hasta 1MΩ, pero cuando el sensor LDR está expuesto a la luz, la resistencia disminuye drásticamente, incluso hasta unos pocos ohmios, dependiendo de la intensidad de la luz. Los LDRs tienen una sensibilidad que varía con la longitud de onda de la luz aplicada y son dispositivos no lineales. Se utilizan en muchas aplicaciones, pero a veces son obsoletos por otros dispositivos como fotodiodos y fototransistores. [Fuente](http://www.resistorguide.com/photoresistor/)
  <img src="https://raw.githubusercontent.com/USB-EC3081-III-2019/EC3081-G03/master/docs/ldr.png">
  
-* FAN COOLER
 
 * SENSOR DE TEMPERATURA [LM35](https://www.mouser.com/ProductDetail/Texas-Instruments/LM35DZ-NOPB?qs=sGAEpiMZZMvu8NZDyZ4K0WAoLK%252Bhc60t)
  
@@ -28,10 +27,14 @@ Un sensor es un dispositivo capaz de captar magnitudes físicas (variaciones de 
  
  <img src="https://github.com/USB-EC3081-III-2019/EC3081-G03/blob/master/docs/DHT11%20Image.jpg" width="300" height="300">
  
+ * SENSOR DE GAS [MQ-2](http://www.haoyuelectronics.com/Attachment/MQ-2/MQ-2.pdf)
+ <img src="https://github.com/USB-EC3081-III-2019/EC3081-G03/blob/master/MQ2.jpg" width="300" height="300">
  # Actuadores
  ¿Qué es un actuador?
-Un actuador es un dispositivo capaz de transformar energía hidráulica, neumática o eléctrica en la activación de un proceso con la finalidad de generar un efecto sobre un sistema automatizado. Este recibe la orden de un regulador o controlador y en función a ella genera la señal para activar un elemento final de control. [–Fuente]( https://es.wikipedia.org/wiki/Actuador)
+Un actuador es un dispositivo capaz de transformar energía hidráulica, neumática o eléctrica en la activación de un proceso con la finalidad de generar un efecto sobre un sistema automatizado. Este recibe la orden de un regulador o controlador y en función a ella genera la señal para activar un elemento final de control. [–Fuente](https://es.wikipedia.org/wiki/Actuador)
 
+* FAN COOLER
+* RELAY
 
 
 ## Estructura del repositorio
