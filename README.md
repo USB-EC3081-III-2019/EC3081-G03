@@ -23,15 +23,17 @@ Un sensor es un dispositivo capaz de captar magnitudes físicas (variaciones de 
  Para convertir el voltaje a la temperatura, el LM35 proporciona 10mV por cada grado centígrado. También cabe señalar que ese sensor se puede usar sin offset, es decir que si medimos 20mV a la salida, estaremos midiendo 2°C. [Fuente](https://hetpro-store.com/TUTORIALES/lm35/)
  <img src="https://github.com/USB-EC3081-III-2019/EC3081-G03/blob/master/docs/lm35%20image.jpg" width="300" height="300">
  
-* SENSOR DE HUMEDAD Y TEMPERATURA [DHT11](https://github.com/USB-EC3081-III-2019/EC3081-G03/blob/master/docs/DHT11%20Image.jpg) 
+* SENSOR DE HUMEDAD Y TEMPERATURA [DHT11](https://www.mouser.com/ProductDetail/Adafruit/386?qs=sGAEpiMZZMsMyYRRhGMFNh01bQ8voJljBK9gPXpRcgg%3D) 
  
  <img src="https://github.com/USB-EC3081-III-2019/EC3081-G03/blob/master/docs/DHT11%20Image.jpg" width="300" height="300">
  
  * SENSOR DE GAS [MQ-2](http://www.haoyuelectronics.com/Attachment/MQ-2/MQ-2.pdf)
  <img src="https://github.com/USB-EC3081-III-2019/EC3081-G03/blob/master/MQ2.jpg" width="300" height="300">
+ 
  # Actuadores
- ¿Qué es un actuador?
-Un actuador es un dispositivo capaz de transformar energía hidráulica, neumática o eléctrica en la activación de un proceso con la finalidad de generar un efecto sobre un sistema automatizado. Este recibe la orden de un regulador o controlador y en función a ella genera la señal para activar un elemento final de control. [–Fuente](https://es.wikipedia.org/wiki/Actuador)
+ 
+¿Qué es un actuador?
+Un actuador es un dispositivo capaz de transformar energía hidráulica, neumática o eléctrica en la activación de un proceso con la finalidad de generar un efecto sobre un sistema automatizado. Este recibe la orden de un regulador o controlador y en función a ella genera la señal para activar un elemento final de control. [Fuente](https://es.wikipedia.org/wiki/Actuador)
 
 * FAN COOLER
 * RELAY
