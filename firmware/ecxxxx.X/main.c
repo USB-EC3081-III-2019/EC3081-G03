@@ -49,12 +49,19 @@ void main(void) {
     }
 
 }
-
-
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////Libreria INTERFACE///////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////
+
 void INTERFACE_Manual_Auto(void) {
+    int w, x, y, z;
+
     n = ' ';
+    w = 0;
+    x = 0;
+    y = 0;
+    z = 0;
+
     LCD_Comando(0x01); // Limpiar Display
     LCD_EscribirStr("#1: Manual");
     LCD_Cursor(-10, 2);
@@ -67,93 +74,139 @@ void INTERFACE_Manual_Auto(void) {
     n = ' ';
     while (n == ' ') {
     }
-    switch (n) {
-        case'1':
-            n = ' ';
-            LCD_Comando(0x01); // Limpiar Display
-            LCD_Cursor(2, 1);
-            LCD_EscribirStr("AjusteManual");
-            PORTAbits.RA1=1;
-            LCD_Cursor(-14, 2);
-            LCD_EscribirStr("#1: Luminaria #2: Ventilacion");
-            LCD_Display(29);
-            n = ' ';
-            while (n == ' ') {
-            }
-            switch (n) {
-                case'1':
-                    n = ' ';
-                    LCD_Comando(0x01); // Limpiar Display
-                    LCD_EscribirStr("   Luminaria:");
-                    LCD_Cursor(-13, 2);
-                    LCD_EscribirStr("#1: On   #2: Off");
-                    n = ' ';
+    while (y == 0) {
+        while (n == ' ') {
+        }
+        switch (n) {
+            case'1':
+                n = ' ';
+                LCD_Comando(0x01); // Limpiar Display
+                LCD_Cursor(2, 1);
+                LCD_EscribirStr("AjusteManual");
+                PORTAbits.RA1 = 1;
+                LCD_Cursor(-14, 2);
+                LCD_EscribirStr("#1: Luminaria #2: Ventilacion");
+                LCD_Display(29);
+                y = 1;
+                n = ' ';
+                while (n == ' ') {
+                }
+                while (w == 0) {
                     while (n == ' ') {
                     }
                     switch (n) {
                         case'1':
                             n = ' ';
                             LCD_Comando(0x01); // Limpiar Display
-                            LCD_EscribirStr("  Luminaria On");
-                            __delay_ms(3000);
+                            LCD_EscribirStr("   Luminaria:");
+                            LCD_Cursor(-13, 2);
+                            LCD_EscribirStr("#1: On   #2: Off");
+                            w = 1;
                             n = ' ';
+                            while (n == ' ') {
+                            }
+                            while (z == 0) {
+                                while (n == ' ') {
+                                }
+                                switch (n) {
+                                    case'1':
+                                        n = ' ';
+                                        LCD_Comando(0x01); // Limpiar Display
+                                        LCD_EscribirStr("  Luminaria On");
+                                        __delay_ms(3000);
+                                        z = 1;
+                                        n = ' ';
+                                        break;
+                                    case'2':
+                                        n = ' ';
+                                        LCD_Comando(0x01); // Limpiar Display
+                                        LCD_EscribirStr("  Luminaria Off");
+                                        __delay_ms(3000);
+                                        z = 1;
+                                        n = ' ';
+                                        break;
+                                    default:
+                                        z = 0;
+                                        n = ' ';
+                                        break;
+
+                                }
+                            }//aqui muere el switch 3 luminaria
                             break;
                         case'2':
                             n = ' ';
                             LCD_Comando(0x01); // Limpiar Display
-                            LCD_EscribirStr("  Luminaria Off");
-                            __delay_ms(3000);
+                            LCD_EscribirStr("  Ventilacion:");
+                            LCD_Cursor(-14, 2);
+                            LCD_EscribirStr("#1: On   #2: Off");
+                            w = 1;
+                            n = ' ';
+                            while (n == ' ') {
+                            }
+                            while (x == 0) {
+                                while (n == ' ') {
+                                }
+                                switch (n) {
+                                    case'1':
+                                        n = ' ';
+                                        LCD_Comando(0x01); // Limpiar Display
+                                        LCD_EscribirStr(" Ventilacion On");
+                                        __delay_ms(3000);
+                                        x = 1;
+                                        n = ' ';
+                                        break;
+                                    case'2':
+                                        n = ' ';
+                                        LCD_Comando(0x01); // Limpiar Display
+                                        LCD_EscribirStr(" Ventilacion Off");
+                                        __delay_ms(3000);
+                                        x = 1;
+                                        n = ' ';
+                                        break;
+                                    default:
+                                        x = 0;
+                                        n = ' ';
+                                        break;
+                                }//aqui muere el switch 4 ventilacion
+                            }
+                            break;
+                        default:
+                            w = 0;
                             n = ' ';
                             break;
-                    }//aqui muere el switch 3 luminaria
-                    break;
-                case'2':
-                    n = ' ';
-                    LCD_Comando(0x01); // Limpiar Display
-                    LCD_EscribirStr("  Ventilacion:");
-                    LCD_Cursor(-14, 2);
-                    LCD_EscribirStr("#1: On   #2: Off");
-                    n = ' ';
-                    while (n == ' ') {
-                    }
-                    switch (n) {
-                        case'1':
-                            n = ' ';
-                            LCD_Comando(0x01); // Limpiar Display
-                            LCD_EscribirStr(" Ventilacion On");
-                            __delay_ms(3000);
-                            n = ' ';
-                            break;
-                        case'2':
-                            n = ' ';
-                            LCD_Comando(0x01); // Limpiar Display
-                            LCD_EscribirStr(" Ventilacion Off");
-                            __delay_ms(3000);
-                            n = ' ';
-                            break;
-                    }//aqui muere el switch 4 ventilacion
-                    break;
-            }//aqui muere el switch 2 - Ajuste manual, luminaria o ventilacion?
-            break; 
-        case'2': // Automatico
-            n = ' ';
-            LCD_Comando(0x01); // Limpiar Display
-            LCD_EscribirStr("   AjusteAuto");
-            PORTAbits.RA1=0;
-            LCD_Cursor(-13, 2);
-            LCD_EscribirStr("Conf por defecto");
-            n = ' ';
-            __delay_ms(3000);
-            break;
-        case'3': // Menu principal
-            LCD_Comando(0x01); // Limpiar Display
-            n = ' ';
-            break;
+                    }//aqui muere el switch 2 - Ajuste manual, luminaria o ventilacion?
+                }
+                break;
+            case'2': // Automatico
+                n = ' ';
+                LCD_Comando(0x01); // Limpiar Display
+                LCD_EscribirStr("   AjusteAuto");
+                PORTAbits.RA1 = 0;
+                LCD_Cursor(-13, 2);
+                LCD_EscribirStr("Conf por defecto");
+                y = 1;
+                n = ' ';
+                __delay_ms(3000);
+                break;
+            case'3': // Menu principal
+                LCD_Comando(0x01); // Limpiar Display
+                y = 1;
+                n = ' ';
+                break;
+            default:
+                y = 0;
+                n = ' ';
+                break;
+        }
     }
 }
 
 void INTERFACE_Umbral(void) {
+    int y;
+
     n = ' ';
+    y = 0;
+
     LCD_Comando(0x01); // Limpiar Display
     LCD_EscribirStr("Umbrales de actuadores:");
     LCD_Cursor(-23, 2);
@@ -162,36 +215,51 @@ void INTERFACE_Umbral(void) {
     n = ' ';
     while (n == ' ') {
     }
-    switch (n) {
-        case'1':
-            n = ' ';
-            LCD_Comando(0x01); // Limpiar Display
-            LCD_EscribirStr("  Umbral Temp.");
-            LCD_Cursor(-14, 1);
-            __delay_ms(3000);
-            n = ' ';
-            break;
-        case'2':
-            n = ' ';
-            LCD_Comando(0x01); // Limpiar Display
-            LCD_EscribirStr("   Umbral CO.");
-            LCD_Cursor(-13, 1);
-            __delay_ms(3000);
-            n = ' ';
-            break;
-        case'3':
-            n = ' ';
-            LCD_Comando(0x01); // Limpiar Display
-            LCD_EscribirStr(" Umbral Lumenes");
-            LCD_Cursor(-15, 1);
-            __delay_ms(3000);
-            n = ' ';
-            break;
+    while (y == 0) {
+        while (n == ' ') {
+        }
+        switch (n) {
+            case'1':
+                n = ' ';
+                LCD_Comando(0x01); // Limpiar Display
+                LCD_EscribirStr("  Umbral Temp.");
+                LCD_Cursor(-14, 1);
+                __delay_ms(3000);
+                y = 1;
+                n = ' ';
+                break;
+            case'2':
+                n = ' ';
+                LCD_Comando(0x01); // Limpiar Display
+                LCD_EscribirStr("   Umbral CO.");
+                LCD_Cursor(-13, 1);
+                __delay_ms(3000);
+                y = 1;
+                n = ' ';
+                break;
+            case'3':
+                n = ' ';
+                LCD_Comando(0x01); // Limpiar Display
+                LCD_EscribirStr(" Umbral Lumenes");
+                LCD_Cursor(-15, 1);
+                __delay_ms(3000);
+                y = 1;
+                n = ' ';
+                break;
+            default:
+                y = 0;
+                n = ' ';
+                break;
+        }
     }
 }
 
 void INTERFACE_Datos(void) {
+    int y;
+
     n = ' ';
+    y = 0;
+
     LCD_Comando(0x01); // Limpiar Display
     LCD_EscribirStr("#1: Temperatura");
     LCD_Cursor(-15, 2);
@@ -202,31 +270,46 @@ void INTERFACE_Datos(void) {
     n = ' ';
     while (n == ' ') {
     }
-    switch (n) {
-        case'1':
-            LCD_Comando(0x01); // Limpiar Display
-            LCD_EscribirStr("Temp: 25 C");
-            LCD_Cursor(-10, 2);
-            LCD_EscribirStr("Humedad: 36%");
-            __delay_ms(5000);
-            break;
-        case'2':
-            LCD_Comando(0x01); // Limpiar Display
-            LCD_EscribirStr("Nivel de CO: 15%");
-            LCD_Cursor(-16, 2);
-            __delay_ms(5000);
-            break;
-        case'3':
-            LCD_Comando(0x01); // Limpiar Display
-            LCD_EscribirStr("Lumenes: 4923");
-            LCD_Cursor(-13, 2);
-            __delay_ms(5000);
-            break;
+    while (y == 0) {
+        while (n == ' ') {
+        }
+        switch (n) {
+            case'1':
+                LCD_Comando(0x01); // Limpiar Display
+                LCD_EscribirStr("Temp: 25 C");
+                LCD_Cursor(-10, 2);
+                LCD_EscribirStr("Humedad: 36%");
+                __delay_ms(5000);
+                y = 1;
+                break;
+            case'2':
+                LCD_Comando(0x01); // Limpiar Display
+                LCD_EscribirStr("Nivel de CO: 15%");
+                LCD_Cursor(-16, 2);
+                __delay_ms(5000);
+                y = 1;
+                break;
+            case'3':
+                LCD_Comando(0x01); // Limpiar Display
+                LCD_EscribirStr("Lumenes: 4923");
+                LCD_Cursor(-13, 2);
+                __delay_ms(5000);
+                y = 1;
+                break;
+            default:
+                y = 0;
+                n = ' ';
+                break;
+        }
     }
 }
 
 void INTERFACE_Principal(void) {
+    int y;
+
     n = ' ';
+    y = 0;
+
     LCD_Comando(0x01); // Limpiar Display
     LCD_EscribirStr("#1: Datos");
     LCD_Cursor(3, 1);
@@ -238,23 +321,35 @@ void INTERFACE_Principal(void) {
 
     while (n == ' ') {
     }
-    switch (n) {
-        case'1':
-            INTERFACE_Datos();
-            n = ' ';
-            break;
-        case'2':
-            INTERFACE_Umbral();
-            n = ' ';
-            break;
-        case'3':
-            INTERFACE_Manual_Auto();
-            n = ' ';
-            break;
-        case'#':
-            Q=0;
-            n = ' ';
-            break;
+    while (y == 0) {
+        while (n == ' ') {
+        }
+        switch (n) {
+            case'1':
+                INTERFACE_Datos();
+                y = 1;
+                n = ' ';
+                break;
+            case'2':
+                INTERFACE_Umbral();
+                y = 1;
+                n = ' ';
+                break;
+            case'3':
+                INTERFACE_Manual_Auto();
+                y = 1;
+                n = ' ';
+                break;
+            case'#':
+                Q = 0;
+                y = 1;
+                n = ' ';
+                break;
+            default:
+                y = 0;
+                n = ' ';
+                break;
+        }
     }
 }
 
@@ -285,13 +380,13 @@ void INTERFACE_Bienvenida(void) {
     __delay_ms(1.64);
     n = ' ';
 }
+////////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////Libreria INTERFACE///////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 
-
-
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////Libreria LCD/////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////
 void LCD_Escribir(char dato) {
     LCD_RS = 1;
     LCD_DATO = dato;
@@ -374,7 +469,7 @@ void LCD_Display(int Tam) {
     if (Tam > 16 && Tam < 64) {
         aux1 = Tam - 16;
         for (i = -1; i < aux1; i++) {
-            __delay_ms(500);
+            __delay_ms(300);
             LCD_Comando(0x1B);
         }
     }
@@ -382,10 +477,9 @@ void LCD_Display(int Tam) {
     LCD_Comando(0x02);
     __delay_ms(2);
 }
+////////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////Libreria LCD/////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////
-
-
 
 void PIC_Configuracion_Inicial(void) {
     TRISD = 0;
