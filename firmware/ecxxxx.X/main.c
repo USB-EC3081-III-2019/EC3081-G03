@@ -16,106 +16,282 @@
 
 void LCD_Escribir(char dato);
 void LCD_Comando(char dato);
-void LCD_Configuracion_Inicial();
-void PIC_Configuracion_Inicial();
+void LCD_Configuracion_Inicial(void);
+void PIC_Configuracion_Inicial(void);
 void LCD_EscribirStr(char str[]);
 void LCD_Cursor(int Horizontal, int Vertical);
-void LCD_Display(int Tam, int Hor);
+void LCD_Display(int Tam);
 int LCD_Contar(char c[]);
-unsigned char n;
+void INTERFACE_Bienvenida(void);
+void INTERFACE_Principal(void);
+void INTERFACE_Datos(void);
+void INTERFACE_Umbral(void);
+void INTERFACE_Manual_Auto(void);
+unsigned char n = ' ';
+unsigned int a = 0, Q = 0;
 
-void main() {
-    int Horizontal, Vertical, aux2, aux3;
-    char aux1[] = "NUMEROS:";
-    char aux0[] = "->";
+void main(void) {
+    char aux0[] = "0";
+
     PIC_Configuracion_Inicial();
     LCD_Configuracion_Inicial();
+    PORTAbits.RA1 = 0; // Configuracion en modo automatico
 
-    aux2 = LCD_Contar(aux1);
+    //RBIE = 0;
 
-    Horizontal = 0; // Numero de cuadros del cursor que se desea desplazar hacia la derecha - 63 la primera lina, para la simulacion - 40 la primera linea para el montaje
-    Vertical = 1; // 1 Arriba, 2 Abajo
-    LCD_Cursor(Horizontal, Vertical);
-    //LCD_EscribirStr(aux1);
-
-    /*while(1)
-    {  
-        //LCD_Display(aux2,0);
-    }*/
-    ///////////////////////////////////// Linea de abajo:
-
-    /*aux3=LCD_Contar(aux0);
-       
-      Horizontal = -aux2; // Numero de cuadros del cursor que se desea desplazar hacia la derecha - 63 la primera lina, para la simulacion - 40 la primera linea para el montaje
-      Vertical = 2; // 1 Arriba, 2 Abajo
-      LCD_Cursor(Horizontal, Vertical);
-      LCD_EscribirStr(aux0);
-      while(1){};*/
-
-    /*while(1)
-    {  
-        LCD_Display(aux3,0); 
-    }*/
-
+    n = ' ';
     while (1) {
-        __delay_ms(500);
-        PORTAbits.RA0 = 1;
-        __delay_ms(500);
-        PORTAbits.RA0 = 0;
-
-        switch (n) {
-            case'1':
-                LCD_EscribirStr("1");
-                n=' ';
-                break;
-            case'2':
-                LCD_EscribirStr("2");
-                n=' ';
-                break;
-            case'3':
-                LCD_EscribirStr("3");
-                n=' ';
-                break;
-            case'4':
-                LCD_EscribirStr("4");
-                n=' ';
-                break;
-            case'5':
-                LCD_EscribirStr("5");
-                n=' ';
-                break;
-            case'6':
-                LCD_EscribirStr("6");
-                n=' ';
-                break;
-            case'7':
-                LCD_EscribirStr("7");
-                n=' ';
-                break;
-            case'8':
-                LCD_EscribirStr("8");
-                n=' ';
-                break;
-            case'9':
-                LCD_EscribirStr("9");
-                n=' ';
-                break;
-            case'0':
-                LCD_EscribirStr("0");
-                n=' ';
-                break;
-            case'*':
-                LCD_EscribirStr("*");
-                n=' ';
-                break;
-            case'#':
-                LCD_EscribirStr("#");
-                n=' ';
-                break;
+        INTERFACE_Bienvenida();
+        Q = 1;
+        while (Q == 1) {
+            INTERFACE_Principal();
         }
-    }; //Prueba encendiendo intermitentemente un LED*/
+    }
+
 }
 
+
+////////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////Libreria INTERFACE///////////////////////////////////////
+void INTERFACE_Manual_Auto(void) {
+    n = ' ';
+    LCD_Comando(0x01); // Limpiar Display
+    LCD_EscribirStr("#1: Manual");
+    LCD_Cursor(-10, 2);
+    LCD_EscribirStr("#2: Automatico (defecto)");
+    LCD_Comando(0x02); //regresar cursor a casa
+    __delay_ms(1.64);
+    LCD_Cursor(13, 1);
+    LCD_EscribirStr("#3: Menu Principal");
+    LCD_Display(31);
+    n = ' ';
+    while (n == ' ') {
+    }
+    switch (n) {
+        case'1':
+            n = ' ';
+            LCD_Comando(0x01); // Limpiar Display
+            LCD_Cursor(2, 1);
+            LCD_EscribirStr("AjusteManual");
+            PORTAbits.RA1=1;
+            LCD_Cursor(-14, 2);
+            LCD_EscribirStr("#1: Luminaria #2: Ventilacion");
+            LCD_Display(29);
+            n = ' ';
+            while (n == ' ') {
+            }
+            switch (n) {
+                case'1':
+                    n = ' ';
+                    LCD_Comando(0x01); // Limpiar Display
+                    LCD_EscribirStr("   Luminaria:");
+                    LCD_Cursor(-13, 2);
+                    LCD_EscribirStr("#1: On   #2: Off");
+                    n = ' ';
+                    while (n == ' ') {
+                    }
+                    switch (n) {
+                        case'1':
+                            n = ' ';
+                            LCD_Comando(0x01); // Limpiar Display
+                            LCD_EscribirStr("  Luminaria On");
+                            __delay_ms(3000);
+                            n = ' ';
+                            break;
+                        case'2':
+                            n = ' ';
+                            LCD_Comando(0x01); // Limpiar Display
+                            LCD_EscribirStr("  Luminaria Off");
+                            __delay_ms(3000);
+                            n = ' ';
+                            break;
+                    }//aqui muere el switch 3 luminaria
+                    break;
+                case'2':
+                    n = ' ';
+                    LCD_Comando(0x01); // Limpiar Display
+                    LCD_EscribirStr("  Ventilacion:");
+                    LCD_Cursor(-14, 2);
+                    LCD_EscribirStr("#1: On   #2: Off");
+                    n = ' ';
+                    while (n == ' ') {
+                    }
+                    switch (n) {
+                        case'1':
+                            n = ' ';
+                            LCD_Comando(0x01); // Limpiar Display
+                            LCD_EscribirStr(" Ventilacion On");
+                            __delay_ms(3000);
+                            n = ' ';
+                            break;
+                        case'2':
+                            n = ' ';
+                            LCD_Comando(0x01); // Limpiar Display
+                            LCD_EscribirStr(" Ventilacion Off");
+                            __delay_ms(3000);
+                            n = ' ';
+                            break;
+                    }//aqui muere el switch 4 ventilacion
+                    break;
+            }//aqui muere el switch 2 - Ajuste manual, luminaria o ventilacion?
+            break; 
+        case'2': // Automatico
+            n = ' ';
+            LCD_Comando(0x01); // Limpiar Display
+            LCD_EscribirStr("   AjusteAuto");
+            PORTAbits.RA1=0;
+            LCD_Cursor(-13, 2);
+            LCD_EscribirStr("Conf por defecto");
+            n = ' ';
+            __delay_ms(3000);
+            break;
+        case'3': // Menu principal
+            LCD_Comando(0x01); // Limpiar Display
+            n = ' ';
+            break;
+    }
+}
+
+void INTERFACE_Umbral(void) {
+    n = ' ';
+    LCD_Comando(0x01); // Limpiar Display
+    LCD_EscribirStr("Umbrales de actuadores:");
+    LCD_Cursor(-23, 2);
+    LCD_EscribirStr("#1: Temp  #2:CO  #3: Lumenes");
+    LCD_Display(28);
+    n = ' ';
+    while (n == ' ') {
+    }
+    switch (n) {
+        case'1':
+            n = ' ';
+            LCD_Comando(0x01); // Limpiar Display
+            LCD_EscribirStr("  Umbral Temp.");
+            LCD_Cursor(-14, 1);
+            __delay_ms(3000);
+            n = ' ';
+            break;
+        case'2':
+            n = ' ';
+            LCD_Comando(0x01); // Limpiar Display
+            LCD_EscribirStr("   Umbral CO.");
+            LCD_Cursor(-13, 1);
+            __delay_ms(3000);
+            n = ' ';
+            break;
+        case'3':
+            n = ' ';
+            LCD_Comando(0x01); // Limpiar Display
+            LCD_EscribirStr(" Umbral Lumenes");
+            LCD_Cursor(-15, 1);
+            __delay_ms(3000);
+            n = ' ';
+            break;
+    }
+}
+
+void INTERFACE_Datos(void) {
+    n = ' ';
+    LCD_Comando(0x01); // Limpiar Display
+    LCD_EscribirStr("#1: Temperatura");
+    LCD_Cursor(-15, 2);
+    LCD_EscribirStr("#2: CO");
+    LCD_Cursor(3, 1);
+    LCD_EscribirStr("#3: Lumenes");
+    LCD_Display(20);
+    n = ' ';
+    while (n == ' ') {
+    }
+    switch (n) {
+        case'1':
+            LCD_Comando(0x01); // Limpiar Display
+            LCD_EscribirStr("Temp: 25 C");
+            LCD_Cursor(-10, 2);
+            LCD_EscribirStr("Humedad: 36%");
+            __delay_ms(5000);
+            break;
+        case'2':
+            LCD_Comando(0x01); // Limpiar Display
+            LCD_EscribirStr("Nivel de CO: 15%");
+            LCD_Cursor(-16, 2);
+            __delay_ms(5000);
+            break;
+        case'3':
+            LCD_Comando(0x01); // Limpiar Display
+            LCD_EscribirStr("Lumenes: 4923");
+            LCD_Cursor(-13, 2);
+            __delay_ms(5000);
+            break;
+    }
+}
+
+void INTERFACE_Principal(void) {
+    n = ' ';
+    LCD_Comando(0x01); // Limpiar Display
+    LCD_EscribirStr("#1: Datos");
+    LCD_Cursor(3, 1);
+    LCD_EscribirStr("#2: Umbral");
+    LCD_Cursor(-22, 2);
+    LCD_EscribirStr("#3: Man / Auto");
+    LCD_Display(22);
+    n = ' ';
+
+    while (n == ' ') {
+    }
+    switch (n) {
+        case'1':
+            INTERFACE_Datos();
+            n = ' ';
+            break;
+        case'2':
+            INTERFACE_Umbral();
+            n = ' ';
+            break;
+        case'3':
+            INTERFACE_Manual_Auto();
+            n = ' ';
+            break;
+        case'#':
+            Q=0;
+            n = ' ';
+            break;
+    }
+}
+
+void INTERFACE_Bienvenida(void) {
+
+    int aux2, aux3, t = 3, i;
+    n = ' ';
+    LCD_Comando(0x01); // Limpiar Display
+    aux2 = LCD_Contar("BIENVENIDO");
+    LCD_Cursor(3, 1); // 3---> Numero de cuadros del cursor que se desea desplazar hacia la derecha - 63 la primera lina, para la simulacion - 40 la primera linea para el montaje
+    // 1---> Arriba, 2 Abajo
+    LCD_EscribirStr("BIENVENIDO");
+    aux3 = -(aux2 + 3);
+    LCD_Cursor(aux3 + 8, 2);
+
+    char j = '0';
+    for (i = 1; i <= t; i++) {
+        j = i + '0';
+        __delay_ms(1000);
+        LCD_Escribir(j);
+        __delay_ms(1.64);
+        LCD_Comando(0x02); //regresar cursor a casa
+        __delay_ms(1.64);
+        LCD_Cursor(8, 2);
+    }
+    __delay_ms(1000);
+    LCD_Comando(0x01); // Limpiar Display
+    __delay_ms(1.64);
+    n = ' ';
+}
+///////////////////////////////////////////Libreria INTERFACE///////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+
+////////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////Libreria LCD/////////////////////////////////////////////
 void LCD_Escribir(char dato) {
     LCD_RS = 1;
     LCD_DATO = dato;
@@ -136,7 +312,7 @@ void LCD_Comando(char dato) {
     }
 }
 
-void LCD_Configuracion_Inicial() {
+void LCD_Configuracion_Inicial(void) {
     LCD_E = 0;
     __delay_ms(15);
     LCD_Comando(0x38);
@@ -151,23 +327,6 @@ void LCD_Configuracion_Inicial() {
 
     LCD_Comando(0x0C); //DISPLAY ON/ CURSOR OFF /NO BLINKING
 
-}
-
-void PIC_Configuracion_Inicial() {
-    TRISD = 0;
-    TRISCbits.TRISC0 = 0;
-    TRISCbits.TRISC1 = 0;
-    TRISA = 0;
-    TRISB = 0b11110000;
-    ADCON0 = 0b00000000; //Configuracion del registro ADCON0
-    /*INICIALIZACIÓN DE INTERRUPCIONES*/
-    INTCON = 0; //limpiar registro INTCON
-    INTCONbits.GIE = 1; //Hab interrupciones Globales
-    PORTB = 0;
-    RBIF = 0;
-    INTCONbits.RBIE = 1; //Port b
-
-    OPTION_REGbits.nRBPU = 0;
 }
 
 void LCD_EscribirStr(char str[]) {
@@ -189,7 +348,7 @@ void LCD_Cursor(int h, int v) {
     }
 
     if (v == 2) {
-        h = h + 40;
+        h = h + 64;
         for (i = 0; i < h; i++) {
             __delay_us(40);
             LCD_Comando(0x14);
@@ -206,25 +365,49 @@ int LCD_Contar(char c[]) {
     return i;
 }
 
-void LCD_Display(int Tam, int Hor) {
+void LCD_Display(int Tam) {
     int aux1, i;
     __delay_ms(2);
     LCD_Comando(0x02);
 
-    __delay_ms(2000);
-    if (Tam > 16 && Tam < 40) {
+    __delay_ms(1000);
+    if (Tam > 16 && Tam < 64) {
         aux1 = Tam - 16;
         for (i = -1; i < aux1; i++) {
             __delay_ms(500);
             LCD_Comando(0x1B);
         }
     }
+    __delay_ms(2);
+    LCD_Comando(0x02);
+    __delay_ms(2);
+}
+///////////////////////////////////////////Libreria LCD/////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+
+void PIC_Configuracion_Inicial(void) {
+    TRISD = 0;
+    TRISCbits.TRISC0 = 0;
+    TRISCbits.TRISC1 = 0;
+    TRISA = 0;
+    TRISB = 0b11110000;
+    ADCON0 = 0b00000000; //Configuracion del registro ADCON0
+    /*INICIALIZACIÓN DE INTERRUPCIONES*/
+    INTCON = 0; //limpiar registro INTCON
+    INTCONbits.GIE = 1; //Hab interrupciones Globales
+    PORTB = 0;
+    RBIF = 0;
+    INTCONbits.RBIE = 1; //Port b
+
+    OPTION_REGbits.nRBPU = 0;
 }
 
-void interrupt Interrupcion(void) {
+void __interrupt() Interrupcion(void) {
     if (RBIF) //Si hay cambio de estado en PORTB
     {
-        char a = 1, b = 1, c = 1, i = 0, k = 1;
+        char a = 0, b = 1, c = 1, i = 1, k = 1;
         while (k == 1) {
             PORTBbits.RB3 = a;
             PORTBbits.RB2 = b;
@@ -252,7 +435,6 @@ void interrupt Interrupcion(void) {
             }
             if ((PORTBbits.RB7 == 0)&&(PORTBbits.RB1 == 0))//Código de atención de la interrupción
             {
-                LCD_Comando(0x01); //Display clear
                 __delay_ms(2);
                 //LCD_Escribir('#');
                 n = '#';
@@ -344,13 +526,6 @@ void interrupt Interrupcion(void) {
                 __delay_ms(50);
             }
 
-
-
-            if (i == 0) {
-                a = 0;
-                b = 1;
-                c = 1;
-            }
             if (i == 1) {
                 a = 1;
                 b = 0;
