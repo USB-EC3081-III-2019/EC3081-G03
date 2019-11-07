@@ -296,6 +296,11 @@ void INTERFACE_Datos(void) {
                 __delay_ms(5000);
                 y = 1;
                 break;
+            case'4':
+                LCD_Comando(0x01); // Limpiar Display
+                y = 1;
+                n = ' ';
+                break;
             default:
                 y = 0;
                 n = ' ';
@@ -443,7 +448,7 @@ void LCD_Cursor(int h, int v) {
     }
 
     if (v == 2) {
-        h = h + 64;
+        h = h + 40;
         for (i = 0; i < h; i++) {
             __delay_us(40);
             LCD_Comando(0x14);
@@ -462,16 +467,21 @@ int LCD_Contar(char c[]) {
 
 void LCD_Display(int Tam) {
     int aux1, i;
+    
     __delay_ms(2);
     LCD_Comando(0x02);
 
     __delay_ms(1000);
-    if (Tam > 16 && Tam < 64) {
+    if (Tam > 16 && Tam < 40) {
         aux1 = Tam - 16;
-        for (i = -1; i < aux1; i++) {
-            __delay_ms(300);
+        n = ' ';
+        for (i = -1; (i < aux1) && (n == ' '); i++) {
+            __delay_ms(400);
             LCD_Comando(0x1B);
         }
+    }
+    if(n == ' '){
+        __delay_ms(1300);
     }
     __delay_ms(2);
     LCD_Comando(0x02);
