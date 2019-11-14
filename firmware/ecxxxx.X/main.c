@@ -71,9 +71,6 @@ void INTERFACE_Manual_Auto(void) {
     LCD_Cursor(13, 1);
     LCD_EscribirStr("#3: Menu Principal");
     LCD_Display(31);
-    n = ' ';
-    while (n == ' ') {
-    }
     while (y == 0) {
         while (n == ' ') {
         }
@@ -88,9 +85,6 @@ void INTERFACE_Manual_Auto(void) {
                 LCD_EscribirStr("#1: Luminaria #2: Ventilacion");
                 LCD_Display(29);
                 y = 1;
-                n = ' ';
-                while (n == ' ') {
-                }
                 while (w == 0) {
                     while (n == ' ') {
                     }
@@ -212,9 +206,6 @@ void INTERFACE_Umbral(void) {
     LCD_Cursor(-23, 2);
     LCD_EscribirStr("#1: Temp  #2:CO  #3: Lumenes");
     LCD_Display(28);
-    n = ' ';
-    while (n == ' ') {
-    }
     while (y == 0) {
         while (n == ' ') {
         }
@@ -267,9 +258,6 @@ void INTERFACE_Datos(void) {
     LCD_Cursor(3, 1);
     LCD_EscribirStr("#3: Lumenes");
     LCD_Display(20);
-    n = ' ';
-    while (n == ' ') {
-    }
     while (y == 0) {
         while (n == ' ') {
         }
@@ -322,10 +310,6 @@ void INTERFACE_Principal(void) {
     LCD_Cursor(-22, 2);
     LCD_EscribirStr("#3: Man / Auto");
     LCD_Display(22);
-    n = ' ';
-
-    while (n == ' ') {
-    }
     while (y == 0) {
         while (n == ' ') {
         }
@@ -448,7 +432,7 @@ void LCD_Cursor(int h, int v) {
     }
 
     if (v == 2) {
-        h = h + 40;
+        h = h + 64;
         for (i = 0; i < h; i++) {
             __delay_us(40);
             LCD_Comando(0x14);
@@ -471,8 +455,8 @@ void LCD_Display(int Tam) {
     __delay_ms(2);
     LCD_Comando(0x02);
 
-    __delay_ms(1000);
-    if (Tam > 16 && Tam < 40) {
+    __delay_ms(300);
+    if (Tam > 16 && Tam < 64) {
         aux1 = Tam - 16;
         n = ' ';
         for (i = -1; (i < aux1) && (n == ' '); i++) {
