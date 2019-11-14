@@ -1,4 +1,8 @@
 #include <xc.h>
+#include <stdio.h>
+#include <stdint.h>
+#include <stdlib.h>
+#include <math.h>
 #pragma config FOSC = XT        // Oscillator Selection bits (XT oscillator)
 #pragma config WDTE = OFF       // Watchdog Timer Enable bit (WDT disabled)
 #pragma config PWRTE = OFF      // Power-up Timer Enable bit (PWRT disabled)
@@ -27,14 +31,19 @@ void INTERFACE_Principal(void);
 void INTERFACE_Datos(void);
 void INTERFACE_Umbral(void);
 void INTERFACE_Manual_Auto(void);
-unsigned char n = ' ';
+
+void Fotocelda(void);
+unsigned int ADC_Read(unsigned char canal);
+
+void Delay_ms(int x);
+unsigned char n = ' ', sr = 40;
 unsigned int a = 0, Q = 0;
 
 void main(void) {
-    char aux0[] = "0";
 
     PIC_Configuracion_Inicial();
     LCD_Configuracion_Inicial();
+    TRISAbits.TRISA1 = 0;
     PORTAbits.RA1 = 0; // Configuracion en modo automatico
 
     //RBIE = 0;
@@ -47,7 +56,6 @@ void main(void) {
             INTERFACE_Principal();
         }
     }
-
 }
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////Libreria INTERFACE///////////////////////////////////////
@@ -107,7 +115,7 @@ void INTERFACE_Manual_Auto(void) {
                                         n = ' ';
                                         LCD_Comando(0x01); // Limpiar Display
                                         LCD_EscribirStr("  Luminaria On");
-                                        __delay_ms(3000);
+                                        Delay_ms(3000);
                                         z = 1;
                                         n = ' ';
                                         break;
@@ -115,7 +123,7 @@ void INTERFACE_Manual_Auto(void) {
                                         n = ' ';
                                         LCD_Comando(0x01); // Limpiar Display
                                         LCD_EscribirStr("  Luminaria Off");
-                                        __delay_ms(3000);
+                                        Delay_ms(3000);
                                         z = 1;
                                         n = ' ';
                                         break;
@@ -145,7 +153,7 @@ void INTERFACE_Manual_Auto(void) {
                                         n = ' ';
                                         LCD_Comando(0x01); // Limpiar Display
                                         LCD_EscribirStr(" Ventilacion On");
-                                        __delay_ms(3000);
+                                        Delay_ms(3000);
                                         x = 1;
                                         n = ' ';
                                         break;
@@ -153,7 +161,7 @@ void INTERFACE_Manual_Auto(void) {
                                         n = ' ';
                                         LCD_Comando(0x01); // Limpiar Display
                                         LCD_EscribirStr(" Ventilacion Off");
-                                        __delay_ms(3000);
+                                        Delay_ms(3000);
                                         x = 1;
                                         n = ' ';
                                         break;
@@ -279,9 +287,8 @@ void INTERFACE_Datos(void) {
                 break;
             case'3':
                 LCD_Comando(0x01); // Limpiar Display
-                LCD_EscribirStr("Lumenes: 4923");
-                LCD_Cursor(-13, 2);
-                __delay_ms(5000);
+                Fotocelda();
+                //__delay_ms(5000);
                 y = 1;
                 break;
             case'4':
@@ -432,7 +439,7 @@ void LCD_Cursor(int h, int v) {
     }
 
     if (v == 2) {
-        h = h + 64;
+        h = h + sr;
         for (i = 0; i < h; i++) {
             __delay_us(40);
             LCD_Comando(0x14);
@@ -456,7 +463,7 @@ void LCD_Display(int Tam) {
     LCD_Comando(0x02);
 
     __delay_ms(300);
-    if (Tam > 16 && Tam < 64) {
+    if (Tam > 16 && Tam < sr) {
         aux1 = Tam - 16;
         n = ' ';
         for (i = -1; (i < aux1) && (n == ' '); i++) {
@@ -479,10 +486,16 @@ void PIC_Configuracion_Inicial(void) {
     TRISD = 0;
     TRISCbits.TRISC0 = 0;
     TRISCbits.TRISC1 = 0;
-    TRISA = 0;
     TRISB = 0b11110000;
-    ADCON0 = 0b00000000; //Configuracion del registro ADCON0
+    
+    ADCON1bits.PCFG = 0b111110; //A0 será la entrada analógica
+    //Perifericos (Iniciar configuraciones analogicas)
+    ADCON0bits.ADCS = 0b00;     //ADCS1:ADCS0: A/D Conversion Clock Select bits 00 = FOSC/2    
+    ADCON0bits.ADON = 1;        //Encendemos el modulo analogico
+    ADCON1bits.ADFM = 1;        //Justificación a la derecha(De esta manera, los bits más significativos se almacenan en ADRESH)
+    //ADCON0 = 0b00000000; //Configuracion del registro ADCON0
     /*INICIALIZACIÓN DE INTERRUPCIONES*/
+    
     INTCON = 0; //limpiar registro INTCON
     INTCONbits.GIE = 1; //Hab interrupciones Globales
     PORTB = 0;
@@ -492,6 +505,71 @@ void PIC_Configuracion_Inicial(void) {
     OPTION_REGbits.nRBPU = 0;
 }
 
+void Fotocelda() {
+    n = ' ';
+    while (n == ' ') {
+        float valor = ADC_Read(0), aux4; //Se coloca 0 porque es el canal analogico RA0
+        float voltaje = (valor * 5) / 1023; //voltajes a lumenes
+        int aux1, aux2, aux3;
+        int lux1;
+
+        valor = voltaje;
+
+        //////////////////////////
+        aux1 = valor;
+        aux2 = aux1 * 10;
+        aux4 = valor * 10;
+        aux3 = aux4 - aux2;
+        /////////////////////////
+
+        lux1 = ((60.386 * (pow(valor, 4))) - (944.04 * (pow(valor, 3))) + (5496.2 * (pow(valor, 2))) - (14252 * valor) + (14092));
+
+        if (lux1 < 0) {
+            lux1 = -lux1;
+        }
+
+        char var[16];
+        LCD_Comando(0x01);
+        LCD_EscribirStr("Flujo luminoso:");
+        LCD_Cursor(-15,2);
+        sprintf(var, "%d Lm", lux1);
+        //LCD_Comando(0x02);
+        //__delay_ms(500);
+        LCD_EscribirStr(var);
+        __delay_ms(100);
+
+         /*LCD_Comando(0x01);
+         LCD_EscribirStr(" V: ");
+         LCD_Escribir('0'+aux1);
+         LCD_EscribirStr(".");
+         LCD_Escribir('0'+aux3);
+         //__delay_ms(200);*/
+         
+         LCD_Comando(0x02);
+    }
+}
+
+unsigned int ADC_Read(unsigned char canal) {
+    ADCON0 &= 0xC5;                     //Valor para reiniciar los canales a 0
+    ADCON0bits.CHS = canal;             //Se elige el canal
+    __delay_ms(2);                      //Espera para el cambio
+    GO_nDONE = 1;                       //Se activa la
+    while (GO_nDONE);                   //Esperamos hasta que terminen
+    int X = ADRESH << 8;
+    X = X + ADRESL;                     //Los valores se guardarán en el registro ADRES H(2 mas significativos) L(6 menos significativos)
+    return (X);
+
+}
+
+void Delay_ms(int x) {
+    __delay_ms(100);
+    n = ' ';
+    for (int i = 0; i < x; i++) {
+        if (n == ' ') {
+            __delay_ms(1);
+        }
+    }
+}
 void __interrupt() Interrupcion(void) {
     if (RBIF) //Si hay cambio de estado en PORTB
     {
@@ -509,7 +587,7 @@ void __interrupt() Interrupcion(void) {
                 //LCD_Escribir('*');
                 n = '*';
                 k = 0;
-                __delay_ms(50);
+                __delay_ms(100);
 
             }
             if ((PORTBbits.RB7 == 0)&&(PORTBbits.RB2 == 0))//Código de atención de la interrupción
@@ -519,7 +597,7 @@ void __interrupt() Interrupcion(void) {
                 //LCD_Escribir('0');
                 n = '0';
                 k = 0;
-                __delay_ms(50);
+                __delay_ms(100);
             }
             if ((PORTBbits.RB7 == 0)&&(PORTBbits.RB1 == 0))//Código de atención de la interrupción
             {
@@ -527,7 +605,7 @@ void __interrupt() Interrupcion(void) {
                 //LCD_Escribir('#');
                 n = '#';
                 k = 0;
-                __delay_ms(50);
+                __delay_ms(100);
             }
             if ((PORTBbits.RB6 == 0)&&(PORTBbits.RB3 == 0)) //Código de atención de la interrupción
             {
@@ -536,7 +614,7 @@ void __interrupt() Interrupcion(void) {
                 //LCD_Escribir('7');
                 n = '7';
                 k = 0;
-                __delay_ms(50);
+                __delay_ms(100);
 
             }
             if ((PORTBbits.RB6 == 0)&&(PORTBbits.RB2 == 0))//Código de atención de la interrupción
@@ -546,7 +624,7 @@ void __interrupt() Interrupcion(void) {
                 //LCD_Escribir('8');
                 n = '8';
                 k = 0;
-                __delay_ms(50);
+                __delay_ms(100);
             }
             if ((PORTBbits.RB6 == 0)&&(PORTBbits.RB1 == 0))//Código de atención de la interrupción
             {
@@ -555,7 +633,7 @@ void __interrupt() Interrupcion(void) {
                 //LCD_Escribir('9');
                 n = '9';
                 k = 0;
-                __delay_ms(50);
+                __delay_ms(100);
             }
             //
             if ((PORTBbits.RB5 == 0)&&(PORTBbits.RB3 == 0)) //Código de atención de la interrupción
@@ -565,7 +643,7 @@ void __interrupt() Interrupcion(void) {
                 //LCD_Escribir('4');
                 n = '4';
                 k = 0;
-                __delay_ms(50);
+                __delay_ms(100);
             }
             if ((PORTBbits.RB5 == 0)&&(PORTBbits.RB2 == 0))//Código de atención de la interrupción
             {
@@ -574,7 +652,7 @@ void __interrupt() Interrupcion(void) {
                 //LCD_Escribir('5');
                 n = '5';
                 k = 0;
-                __delay_ms(50);
+                __delay_ms(100);
             }
             if ((PORTBbits.RB5 == 0)&&(PORTBbits.RB1 == 0))//Código de atención de la interrupción
             {
@@ -583,7 +661,7 @@ void __interrupt() Interrupcion(void) {
                 //LCD_Escribir('6');
                 n = '6';
                 k = 0;
-                __delay_ms(50);
+                __delay_ms(100);
             }
             //
             if ((PORTBbits.RB4 == 0)&&(PORTBbits.RB3 == 0)) //Código de atención de la interrupción
@@ -593,7 +671,7 @@ void __interrupt() Interrupcion(void) {
                 //LCD_Escribir('1');
                 n = '1';
                 k = 0;
-                __delay_ms(50);
+                __delay_ms(100);
             }
             if ((PORTBbits.RB4 == 0)&&(PORTBbits.RB2 == 0))//Código de atención de la interrupción
             {
@@ -602,7 +680,7 @@ void __interrupt() Interrupcion(void) {
                 //LCD_Escribir('2');
                 n = '2';
                 k = 0;
-                __delay_ms(50);
+                __delay_ms(100);
             }
             if ((PORTBbits.RB4 == 0)&&(PORTBbits.RB1 == 0))//Código de atención de la interrupción
             {
@@ -611,7 +689,7 @@ void __interrupt() Interrupcion(void) {
                 //LCD_Escribir('3');
                 n = '3';
                 k = 0;
-                __delay_ms(50);
+                __delay_ms(100);
             }
 
             if (i == 1) {
