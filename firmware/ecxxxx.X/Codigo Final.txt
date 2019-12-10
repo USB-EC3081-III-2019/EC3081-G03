@@ -633,13 +633,13 @@ void PIC_Configuracion_Inicial(void) {
 
     TRISB = 0b11110000;
 
-    //ADCON1bits.PCFG = 0b111110; //A0 ser· la entrada analÛgica
+    //ADCON1bits.PCFG = 0b111110; //A0 ser√° la entrada anal√≥gica
     //Perifericos (Iniciar configuraciones analogicas)
     ADCON0bits.ADCS = 0b00; //ADCS1:ADCS0: A/D Conversion Clock Select bits 00 = FOSC/2    
     ADCON0bits.ADON = 1; //Encendemos el modulo analogico
-    ADCON1bits.ADFM = 1; //JustificaciÛn a la derecha(De esta manera, los bits m·s significativos se almacenan en ADRESH)
+    ADCON1bits.ADFM = 1; //Justificaci√≥n a la derecha(De esta manera, los bits m√°s significativos se almacenan en ADRESH)
     //ADCON0 = 0b00000000; //Configuracion del registro ADCON0
-    /*INICIALIZACI”N DE INTERRUPCIONES*/
+    /*INICIALIZACI√ìN DE INTERRUPCIONES*/
     INTCON = 0; //limpiar registro INTCON
     
     ////////////////////////////////////////////////////////////////////////////
@@ -750,7 +750,7 @@ unsigned int ADC_Read(unsigned char canal) {
     GO_nDONE = 1; //Se activa la
     while (GO_nDONE); //Esperamos hasta que terminen
     int X = ADRESH << 8;
-    X = X + ADRESL; //Los valores se guardar·n en el registro ADRES H(2 mas significativos) L(6 menos significativos)
+    X = X + ADRESL; //Los valores se guardar√°n en el registro ADRES H(2 mas significativos) L(6 menos significativos)
     return (X);
 
 }
@@ -777,7 +777,7 @@ void __interrupt(high_priority) Interrupcion(void) {
             PORTBbits.RB1 = c;
 
 
-            if ((PORTBbits.RB7 == 0)&&(PORTBbits.RB3 == 0)) //CÛdigo de atenciÛn de la interrupciÛn
+            if ((PORTBbits.RB7 == 0)&&(PORTBbits.RB3 == 0)) //C√≥digo de atenci√≥n de la interrupci√≥n
             {
                 //LCD_Comando(0x01); //Display clear
                 __delay_ms(2);
@@ -787,7 +787,7 @@ void __interrupt(high_priority) Interrupcion(void) {
                 __delay_ms(100);
 
             }
-            if ((PORTBbits.RB7 == 0)&&(PORTBbits.RB2 == 0))//CÛdigo de atenciÛn de la interrupciÛn
+            if ((PORTBbits.RB7 == 0)&&(PORTBbits.RB2 == 0))//C√≥digo de atenci√≥n de la interrupci√≥n
             {
                 //LCD_Comando(0x01); //Display clear
                 __delay_ms(2);
@@ -796,7 +796,7 @@ void __interrupt(high_priority) Interrupcion(void) {
                 k = 0;
                 __delay_ms(100);
             }
-            if ((PORTBbits.RB7 == 0)&&(PORTBbits.RB1 == 0))//CÛdigo de atenciÛn de la interrupciÛn
+            if ((PORTBbits.RB7 == 0)&&(PORTBbits.RB1 == 0))//C√≥digo de atenci√≥n de la interrupci√≥n
             {
                 __delay_ms(2);
                 //LCD_Escribir('#');
@@ -804,7 +804,7 @@ void __interrupt(high_priority) Interrupcion(void) {
                 k = 0;
                 __delay_ms(100);
             }
-            if ((PORTBbits.RB6 == 0)&&(PORTBbits.RB3 == 0)) //CÛdigo de atenciÛn de la interrupciÛn
+            if ((PORTBbits.RB6 == 0)&&(PORTBbits.RB3 == 0)) //C√≥digo de atenci√≥n de la interrupci√≥n
             {
                 //LCD_Comando(0x01); //Display clear
                 __delay_ms(2);
@@ -814,7 +814,7 @@ void __interrupt(high_priority) Interrupcion(void) {
                 __delay_ms(100);
 
             }
-            if ((PORTBbits.RB6 == 0)&&(PORTBbits.RB2 == 0))//CÛdigo de atenciÛn de la interrupciÛn
+            if ((PORTBbits.RB6 == 0)&&(PORTBbits.RB2 == 0))//C√≥digo de atenci√≥n de la interrupci√≥n
             {
                 //LCD_Comando(0x01); //Display clear
                 __delay_ms(2);
@@ -823,7 +823,7 @@ void __interrupt(high_priority) Interrupcion(void) {
                 k = 0;
                 __delay_ms(100);
             }
-            if ((PORTBbits.RB6 == 0)&&(PORTBbits.RB1 == 0))//CÛdigo de atenciÛn de la interrupciÛn
+            if ((PORTBbits.RB6 == 0)&&(PORTBbits.RB1 == 0))//C√≥digo de atenci√≥n de la interrupci√≥n
             {
                 //LCD_Comando(0x01); //Display clear
                 __delay_ms(2);
@@ -833,7 +833,7 @@ void __interrupt(high_priority) Interrupcion(void) {
                 __delay_ms(100);
             }
             //
-            if ((PORTBbits.RB5 == 0)&&(PORTBbits.RB3 == 0)) //CÛdigo de atenciÛn de la interrupciÛn
+            if ((PORTBbits.RB5 == 0)&&(PORTBbits.RB3 == 0)) //C√≥digo de atenci√≥n de la interrupci√≥n
             {
                 //LCD_Comando(0x01); //Display clear
                 __delay_ms(2);
@@ -842,7 +842,7 @@ void __interrupt(high_priority) Interrupcion(void) {
                 k = 0;
                 __delay_ms(100);
             }
-            if ((PORTBbits.RB5 == 0)&&(PORTBbits.RB2 == 0))//CÛdigo de atenciÛn de la interrupciÛn
+            if ((PORTBbits.RB5 == 0)&&(PORTBbits.RB2 == 0))//C√≥digo de atenci√≥n de la interrupci√≥n
             {
                 //LCD_Comando(0x01); //Display clear
                 __delay_ms(2);
@@ -851,7 +851,7 @@ void __interrupt(high_priority) Interrupcion(void) {
                 k = 0;
                 __delay_ms(100);
             }
-            if ((PORTBbits.RB5 == 0)&&(PORTBbits.RB1 == 0))//CÛdigo de atenciÛn de la interrupciÛn
+            if ((PORTBbits.RB5 == 0)&&(PORTBbits.RB1 == 0))//C√≥digo de atenci√≥n de la interrupci√≥n
             {
                 //LCD_Comando(0x01); //Display clear
                 __delay_ms(2);
@@ -861,7 +861,7 @@ void __interrupt(high_priority) Interrupcion(void) {
                 __delay_ms(100);
             }
             //
-            if ((PORTBbits.RB4 == 0)&&(PORTBbits.RB3 == 0)) //CÛdigo de atenciÛn de la interrupciÛn
+            if ((PORTBbits.RB4 == 0)&&(PORTBbits.RB3 == 0)) //C√≥digo de atenci√≥n de la interrupci√≥n
             {
                 //LCD_Comando(0x01); //Display clear
                 __delay_ms(2);
@@ -870,7 +870,7 @@ void __interrupt(high_priority) Interrupcion(void) {
                 k = 0;
                 __delay_ms(100);
             }
-            if ((PORTBbits.RB4 == 0)&&(PORTBbits.RB2 == 0))//CÛdigo de atenciÛn de la interrupciÛn
+            if ((PORTBbits.RB4 == 0)&&(PORTBbits.RB2 == 0))//C√≥digo de atenci√≥n de la interrupci√≥n
             {
                 //LCD_Comando(0x01); //Display clear
                 __delay_ms(2);
@@ -879,7 +879,7 @@ void __interrupt(high_priority) Interrupcion(void) {
                 k = 0;
                 __delay_ms(100);
             }
-            if ((PORTBbits.RB4 == 0)&&(PORTBbits.RB1 == 0))//CÛdigo de atenciÛn de la interrupciÛn
+            if ((PORTBbits.RB4 == 0)&&(PORTBbits.RB1 == 0))//C√≥digo de atenci√≥n de la interrupci√≥n
             {
                 //LCD_Comando(0x01); //Display clear
                 __delay_ms(2);
