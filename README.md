@@ -1,5 +1,5 @@
 # Invernadero Inteligente
- El proyecto consiste en diseñar un invernadero inteligente. Un [invernadero](https://grupomsc.com/blog/invernadero/que-es-y-como-funciona-un-invernadero) es un recinto en el que se mantienen condiciones ambientales adecuadas para favorecer el cultivo de plantas. En un invernadero inteligente se monitorean, a través de sensores, las condiciones ambientales (humedad, luminosidad, temperatura, aireación) en las que se encuentra la planta, esta información es interpretada por un microcontrolador el cual dará la señal a una serie de actuadores para que se activen de ser necesario. La intención es automatizar el sistema que controlada las distintas variables que intervienen en este sistema, con el fin de aumentar su eficiencia, es decir, conseguir los mejores resultados en el menor tiempo posible.
+ El proyecto consiste en diseñar un invernadero inteligente. Un [invernadero](https://grupomsc.com/blog/invernadero/que-es-y-como-funciona-un-invernadero) es un recinto en el que se mantienen condiciones ambientales adecuadas para favorecer el cultivo de plantas. En un invernadero inteligente se monitorean, a través de sensores, las condiciones ambientales (humedad, luminosidad, temperatura, ventilación) en las que se encuentra la planta, esta información es interpretada por un microcontrolador el cual dará la señal a una serie de actuadores para que se activen de ser necesario. La intención es automatizar el sistema que controlada las distintas variables que intervienen en este sistema, con el fin de aumentar su eficiencia, es decir, conseguir los mejores resultados en el menor tiempo posible.Por ello, 
 
 ## Integrantes del equipo
 * 15-11517 José Villalobos 
@@ -25,9 +25,12 @@ Un sensor es un dispositivo capaz de captar magnitudes físicas (variaciones de 
  
 * SENSOR DE HUMEDAD Y TEMPERATURA [DHT11](https://www.mouser.com/ProductDetail/Adafruit/386?qs=sGAEpiMZZMsMyYRRhGMFNh01bQ8voJljBK9gPXpRcgg%3D) 
  
+ > El DHT11 es un sensor digital de temperatura y humedad básico y ultra económico. Utiliza un sensor capacitivo de humedad y un termistor para medir el aire circundante, y emite una señal digital en el pin de datos (no se necesitan pines de entrada analógica). Es bastante simple de usar, pero requiere una sincronización cuidadosa para obtener los datos. La única desventaja real de este sensor es que sólo se pueden obtener nuevos datos cada 2 segundos, por lo que cuando se utiliza nuestra biblioteca, las lecturas del sensor pueden tener hasta 2 segundos de antigüedad.
+
  <img src="https://github.com/USB-EC3081-III-2019/EC3081-G03/blob/master/docs/DHT11%20Image.jpg" width="300" height="300">
  
  * SENSOR DE GAS [MQ-2](http://www.haoyuelectronics.com/Attachment/MQ-2/MQ-2.pdf)
+ > Es un Semiconductor de Óxido Metálico (MOS) tipo Sensor de Gas también conocido como Quimiresistores ya que la detección se basa en el cambio de resistencia del material de detección cuando el gas entra en contacto con el material. Utilizando una simple red de divisores de voltaje, las concentraciones de gas pueden ser detectadas.
  <img src="https://github.com/USB-EC3081-III-2019/EC3081-G03/blob/master/MQ2.jpg" width="300" height="300">
  
  # Actuadores
@@ -35,11 +38,19 @@ Un sensor es un dispositivo capaz de captar magnitudes físicas (variaciones de 
 ¿Qué es un actuador?
 Un actuador es un dispositivo capaz de transformar energía hidráulica, neumática o eléctrica en la activación de un proceso con la finalidad de generar un efecto sobre un sistema automatizado. Este recibe la orden de un regulador o controlador y en función a ella genera la señal para activar un elemento final de control. [Fuente](https://es.wikipedia.org/wiki/Actuador)
 
-* FAN COOLER
+En este proyecto se utilizarán:
+* FAN COOLER: controlará la variación de temperatura, dependiendo del valor máximo del umbral que se coloque en el sensor de temperatura.
 * RELAY
 
 # Diagrama de Flujo
 [Diagrama](https://github.com/USB-EC3081-III-2019/EC3081-G03/blob/master/software/Diagrama%20de%20Flujo%20KYJ%20Completo.jpg)
 <img src="https://github.com/USB-EC3081-III-2019/EC3081-G03/blob/master/software/Diagrama%20de%20Flujo%20KYJ%20Completo.jpg">
 
+# RESULTADO FINAL
 
+MONTAJE CIRCUITAL
+
+ <img src="https://github.com/USB-EC3081-III-2019/EC3081-G03/blob/master/docs/Montaje%20final.jpg" width="700" height="700">
+
+Demostración del funcionamiento de los sensores e interfaz. 
+https://drive.google.com/open?id=1_9r9I8R9jA5kXOda97ImiMHW8Yl48ll-
