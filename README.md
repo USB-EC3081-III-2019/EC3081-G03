@@ -53,4 +53,5 @@ MONTAJE CIRCUITAL
  <img src="https://github.com/USB-EC3081-III-2019/EC3081-G03/blob/master/docs/Montaje%20final.jpg" width="700" height="700">
 
 Demostración del funcionamiento de los sensores e interfaz. 
-https://drive.google.com/open?id=1_9r9I8R9jA5kXOda97ImiMHW8Yl48ll-
+
+Video: https://drive.google.com/open?id=1_9r9I8R9jA5kXOda97ImiMHW8Yl48ll-
