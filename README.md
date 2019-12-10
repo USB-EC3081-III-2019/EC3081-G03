@@ -33,6 +33,10 @@ Un sensor es un dispositivo capaz de captar magnitudes físicas (variaciones de 
  > Es un Semiconductor de Óxido Metálico (MOS) tipo Sensor de Gas también conocido como Quimiresistores ya que la detección se basa en el cambio de resistencia del material de detección cuando el gas entra en contacto con el material. Utilizando una simple red de divisores de voltaje, las concentraciones de gas pueden ser detectadas.
  <img src="https://github.com/USB-EC3081-III-2019/EC3081-G03/blob/master/MQ2.jpg" width="300" height="300">
  
+ El esquemático del sensor de humo es el siguiente:
+ 
+  <img src="https://github.com/USB-EC3081-III-2019/EC3081-G03/blob/master/docs/Esquem%C3%A1tico%20de%20Sensor%20de%20Humo.jpg" width="900" height="600">
+ 
  # Actuadores
  
 ¿Qué es un actuador?
